@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get "api/v1/invoices/find_all", to: "api/v1/invoices/find#index"
   get "api/v1/invoice_items/find", to: "api/v1/invoice_items/find#show"
   get "api/v1/invoice_items/find_all", to: "api/v1/invoice_items/find#index"
-
-  # get "api/v1/items", to: "api/v1/items#index"
+  get "api/v1/transactions/find", to: "api/v1/transactions/find#show"
+  get "api/v1/transactions/find_all", to: "api/v1/transactions/find#index"
+  get "api/v1/customers/find", to: "api/v1/customers/find#show"
+  get "api/v1/customers/find_all", to: "api/v1/customers/find#index"
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :merchants, only: [:index, :show]
