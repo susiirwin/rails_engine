@@ -1,2 +1,0 @@
-class Invoiceitem < ApplicationRecord
-end
