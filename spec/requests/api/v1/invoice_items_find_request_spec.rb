@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "invoice items finders" do
   it "returns invoice item by quantity" do
-    item = create(:invoice_item, quantity: 23)
+    invoice_item = create(:invoice_item, quantity: 23)
     get "/api/v1/invoice_items/find?quantity=23"
     result_find = JSON.parse(response.body)
 
@@ -11,7 +11,7 @@ describe "invoice items finders" do
   end
 
   it "returns item by id" do
-    item = create(:invoice_item, id: 1)
+    invoice_item = create(:invoice_item, id: 1)
     get "/api/v1/invoice_items/find?id=1"
     result_find = JSON.parse(response.body)
     expect(response.status).to eq(200)
@@ -38,7 +38,7 @@ describe "invoice items finders" do
     items = 2.times {create(:invoice_item, quantity: 43)}
     get "/api/v1/invoice_items/find_all?quantity=43"
     result_find = JSON.parse(response.body)
-    
+
     expect(response.status).to eq(200)
     expect(result_find.count).to eq(2)
   end
