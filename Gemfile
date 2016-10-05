@@ -28,6 +28,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov', :require => false, :group => :test
 end
 
 group :development do
