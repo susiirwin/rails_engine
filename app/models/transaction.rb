@@ -1,4 +1,5 @@
 class Transaction < ApplicationRecord
   belongs_to :invoice
-  # default_scope { where(result: 'success') }
+  has_many :invoice_items, through: :invoice
+  default_scope { where(result: 'success') }
 end
