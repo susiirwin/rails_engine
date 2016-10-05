@@ -5,6 +5,7 @@ class Api::V1::Items::FindController < ApplicationController
   end
 
   def index
+    price_check
     @items = Item.where(item_params)
   end
 
