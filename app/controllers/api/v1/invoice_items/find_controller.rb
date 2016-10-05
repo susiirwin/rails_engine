@@ -11,12 +11,6 @@ class Api::V1::InvoiceItems::FindController < ApplicationController
 
   private
 
-  def price_check
-    if params['unit_price']
-      params['unit_price'] = (params['unit_price'].to_f * 100).to_i
-    end
-  end
-
   def invoice_items_params
     params.permit(:id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at)
   end

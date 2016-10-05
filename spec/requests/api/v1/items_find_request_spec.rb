@@ -56,4 +56,12 @@ describe "items finders" do
     expect(response.status).to eq(200)
     expect(result_find.count).to eq(2)
   end
+
+  it "returns item by unit price" do
+    item = create(:item, unit_price: 27409)
+    get "/api/v1/items/find?unit_price=274.09"
+    result_find = JSON.parse(response.body)
+    expect(response.status).to eq(200)
+    expect(result_find["unit_price"]).to eq("274.09")
+  end
 end

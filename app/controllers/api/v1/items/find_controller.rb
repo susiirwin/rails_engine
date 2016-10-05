@@ -1,10 +1,11 @@
 class Api::V1::Items::FindController < ApplicationController
   def show
-    render json: Item.find_by(item_params)
+    price_check
+    @item = Item.unscoped.find_by(item_params)
   end
 
   def index
-    render json: Item.where(item_params)
+    @items = Item.where(item_params)
   end
 
   private
