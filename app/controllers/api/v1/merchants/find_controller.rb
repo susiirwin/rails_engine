@@ -4,6 +4,7 @@ class Api::V1::Merchants::FindController < ApplicationController
   end
 
   def index
+    # @merchant = Merchant.all
     render json: Merchant.where(merchant_params)
   end
 
