@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "invoices finders" do
   it "returns invoice by status" do
     invoice = create(:invoice, status: "shipped")
-    get "/api/v1/invoices/find?name=shipped"
+    get "/api/v1/invoices/find?status=shipped"
     result_find = JSON.parse(response.body)
     expect(response.status).to eq(200)
     expect(result_find["status"]).to eq("shipped")
@@ -11,7 +11,7 @@ describe "invoices finders" do
 
   it "returns invoice by case insensitive status" do
     invoice = create(:invoice, status: "shipped")
-    get "/api/v1/invoices/find?name=SHiPPed"
+    get "/api/v1/invoices/find?status=SHiPPed"
     result_find = JSON.parse(response.body)
     expect(response.status).to eq(200)
     expect(result_find["status"]).to eq("shipped")
