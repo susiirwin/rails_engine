@@ -1,7 +1,17 @@
 require 'csv'
 
 desc "Import customers from csv file"
-task :customer_import => [:environment] do
+
+task :import do
+  Rake::Task["customers_import"].invoke
+  Rake::Task["merchants_import"].invoke
+  Rake::Task["items_import"].invoke
+  Rake::Task["invoices_import"].invoke
+  Rake::Task["invoice_items_import"].invoke
+  Rake::Task["transactions_import"].invoke
+end
+
+task :customers_import => [:environment] do
 
   file = "./db/csv/customers.csv"
 
