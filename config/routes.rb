@@ -26,6 +26,9 @@ Rails.application.routes.draw do
           get 'find', to: 'customers/find#show'
           get 'find_all', to: 'customers/find#index'
         end
+        member do
+          get 'favorite_merchant', to: 'customers/favorite_merchant#show'
+        end
       end
       resources :invoices, only: [:index, :show] do
         collection do
