@@ -9,6 +9,10 @@ Rails.application.routes.draw do
           get 'find_all', to: 'merchants/find#index'
           get 'most_items', to: 'merchants/most_items#show'
         end
+        member do
+          get 'items', to: 'merchants/items#index'
+          get 'invoices', to: 'merchants/invoices#index'
+        end
       end
       resources :transactions, only: [:index, :show] do
         collection do
@@ -33,11 +37,19 @@ Rails.application.routes.draw do
           get 'find', to: 'items/find#show'
           get 'find_all', to: 'items/find#index'
         end
+        member do
+          get 'invoice_items', to: 'items/invoice_items#index'
+          get 'merchant', to: 'items/merchant#index'
+        end
       end
       resources :invoice_items, only: [:index, :show] do
         collection do
           get 'find', to: 'invoice_items/find#show'
           get 'find_all', to: 'invoice_items/find#index'
+        end
+        member do
+          get 'invoice', to: 'invoice_items/invoice#index'
+          get 'item', to: 'invoice_items/item#index'
         end
       end
     end
