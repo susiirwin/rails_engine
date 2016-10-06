@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   get '/api/v1/merchants/:id/revenue', to: "api/v1/merchants/revenue#show", as: "api_v1_merchants_revenue", defaults: {format: :json}
+  # get '/api/v1/merchants/:id/revenue?date', to: "api/v1/merchants/revenue_for_date#show", as: "api_v1_merchants_revenue_for_date", defaults: {format: :json}
+
+
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
@@ -13,29 +16,14 @@ Rails.application.routes.draw do
           get 'items', to: 'merchants/items#index'
           get 'invoices', to: 'merchants/invoices#index'
         end
-        member do
-          get 'items', to: 'merchants/items#index'
-          get 'invoices', to: 'merchants/invoices#index'
-        end
-        member do
-          get 'items', to: 'merchants/items#index'
-          get 'invoices', to: 'merchants/invoices#index'
-        end
-        member do
-          get 'items', to: 'merchants/items#index'
-          get 'invoices', to: 'merchants/invoices#index'
-        end
-      end
-      resources :transactions, only: [:index, :show] do
-        collection do
-          get 'find', to: 'transactions/find#show'
-          get 'find_all', to: 'transactions/find#index'
-        end
       end
       resources :customers, only: [:index, :show] do
         collection do
           get 'find', to: 'customers/find#show'
           get 'find_all', to: 'customers/find#index'
+        end
+        member do
+          get 'invoices', to: 'customers/invoices#index'
         end
       end
       resources :invoices, only: [:index, :show] do
@@ -43,7 +31,14 @@ Rails.application.routes.draw do
           get 'find', to: 'invoices/find#show'
           get 'find_all', to: 'invoices/find#index'
         end
+        member do
+          get 'transactions', to: 'invoices/transactions#index'
+          get 'invoice_items', to: 'invoices/invoice_items#index'
+          get 'customer', to: 'invoices/customer#show'
+          get 'merchant', to: 'invoices/merchant#show'
+        end
       end
+
       resources :items, only: [:index, :show] do
         collection do
           get 'find', to: 'items/find#show'
@@ -62,6 +57,16 @@ Rails.application.routes.draw do
         member do
           get 'invoice', to: 'invoice_items/invoice#index'
           get 'item', to: 'invoice_items/item#index'
+        end
+      end
+
+      resources :transactions, only: [:index, :show] do
+        collection do
+          get 'find', to: 'transactions/find#show'
+          get 'find_all', to: 'transactions/find#index'
+        end
+        member do
+          get 'invoice', to: 'transactions/invoice#show'
         end
       end
     end

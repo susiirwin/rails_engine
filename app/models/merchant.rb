@@ -13,12 +13,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.most_items(quantity)
-    # joins(:items).select("merchants.id, count(items.id) item_count from merchants inner join items on merchant.id = items.merchant_id order by item_count desc group by merchants.id limit #{quantity}")
-
-    # # this is for inspiration, it returns counts not merchants - we need the Merchant Object to be returned
-    # # check into AR .select to make this work (not the block version)
-    joins(:items).order("count(items.id) desc").limit(quantity)
-    # .count("items.id")
+    joins(:items).select('merchants.id, merchant_id, count(items.id) as count').limit("#{quantity}").group('merchants.id, merchant_id').order('count desc')
   end
 
 end

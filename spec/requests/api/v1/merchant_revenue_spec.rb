@@ -12,8 +12,9 @@ RSpec.describe "Merchant Business Intelligence" do
       create(:transaction, invoice_id: 1)
 
       get "/api/v1/merchants/#{merchant.id}/revenue"
+      single_merchant_revenue = JSON.parse(response.body)
 
-      single_merchant_revenue = merchant.total_revenue
+      expect(response.status).to eq(200)
       expect(single_merchant_revenue).to eq(9050)
     end
 
@@ -28,8 +29,9 @@ RSpec.describe "Merchant Business Intelligence" do
       create(:transaction, invoice_id: 1)
 
       get "/api/v1/merchants/#{merchant.id}/revenue?date=#{invoice.created_at}"
+      day_revenue = JSON.parse(response.body)
 
-      day_revenue = merchant.total_revenue_for_date(invoice.created_at)
+      expect(response.status).to eq(200)
       expect(day_revenue).to eq(9050)
     end
   end
