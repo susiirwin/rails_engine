@@ -1,11 +1,8 @@
 class Api::V1::Merchants::RevenueForDateController < ApplicationController
 
   def show
-    render json: Merchant.total_revenue_for_date(params[:created_at])
+    @merchant = Merchant.find(params[:id])
+    render json: @merchant.total_revenue_for_date(params[:date])
   end
 
-  # private
-  # def merchant_params
-  #   params.permit(:id, :name, :created_at, :updated_at)
-  # end
 end
