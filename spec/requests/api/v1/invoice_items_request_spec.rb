@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Invoice Items CRUD API" do
   it "returns a list of invoice items" do
-    create_list(:invoiceitem, 3)
+    create_list(:invoice_item, 3)
     get "/api/v1/invoice_items.json"
     invoice_items = JSON.parse(response.body)
 
@@ -11,7 +11,7 @@ RSpec.describe "Invoice Items CRUD API" do
   end
 
   it "shows a single invoice item" do
-    invoice_item = create(:invoiceitem, quantity: 5)
+    invoice_item = create(:invoice_item, quantity: 5)
     get "/api/v1/invoice_items/#{invoice_item.id}"
     raw_invoice_item = JSON.parse(response.body)
 
