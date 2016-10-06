@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         collection do
           get 'find', to: 'merchants/find#show'
           get 'find_all', to: 'merchants/find#index'
+          get 'most_items', to: 'merchants/most_items#show'
         end
       end
       resources :transactions, only: [:index, :show] do
