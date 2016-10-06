@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         end
         member do
           get 'invoices', to: 'customers/invoices#index'
+          get 'transactions', to: 'customers/transactions#index'
         end
       end
       resources :invoices, only: [:index, :show] do
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
         member do
           get 'transactions', to: 'invoices/transactions#index'
           get 'invoice_items', to: 'invoices/invoice_items#index'
+          get 'items', to: 'invoices/items#index'
           get 'customer', to: 'invoices/customer#show'
           get 'merchant', to: 'invoices/merchant#show'
         end

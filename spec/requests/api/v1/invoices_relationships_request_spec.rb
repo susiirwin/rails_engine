@@ -26,6 +26,18 @@ describe "invoices relationships" do
     expect(invoice_items.count).to eq(3)
   end
 
+  it "returns a collection of associated items" do
+    invoice = create(:invoice, id: 1)
+    create(:item, id: 1, name: "laptop")
+    create(:invoice_item, item_id: 1, invoice_id: 1)
+
+    get "/api/v1/invoices/#{invoice.id}/items"
+    items = JSON.parse(response.body)
+
+    expect(response.status).to eq(200)
+    expect(items.count).to eq(1)
+  end
+
   it "returns the associated customer" do
     create(:customer, id: 1, first_name: "Sally")
     create(:customer, id: 2, first_name: "Josh")
