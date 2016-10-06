@@ -8,6 +8,10 @@ Rails.application.routes.draw do
           get 'find', to: 'merchants/find#show'
           get 'find_all', to: 'merchants/find#index'
         end
+        member do
+          get 'items', to: 'merchants/items#index'
+          get 'invoices', to: 'merchants/invoices#index'
+        end
       end
       resources :transactions, only: [:index, :show] do
         collection do
@@ -37,6 +41,10 @@ Rails.application.routes.draw do
         collection do
           get 'find', to: 'invoice_items/find#show'
           get 'find_all', to: 'invoice_items/find#index'
+        end
+        member do
+          get 'invoice', to: 'invoice_items/invoice#index'
+          get 'item', to: 'invoice_items/item#index'
         end
       end
     end
