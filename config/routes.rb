@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         member do
           get 'items', to: 'merchants/items#index'
           get 'invoices', to: 'merchants/invoices#index'
+          get 'favorite_customer', to: 'merchants/favorite_customer#show'
+          get 'customers_with_pending_invoices', to: 'merchants/customers_with_pending_invoices#index'
         end
       end
       resources :customers, only: [:index, :show] do
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
           get 'find_all', to: 'customers/find#index'
         end
         member do
+          get 'favorite_merchant', to: 'customers/favorite_merchant#show'
           get 'invoices', to: 'customers/invoices#index'
           get 'transactions', to: 'customers/transactions#index'
         end
