@@ -1,14 +1,17 @@
 class Api::V1::InvoiceItems::FindController < ApplicationController
   def show
-    render json: InvoiceItem.find_by(invoice_items_params)
+    price_check
+    @invoice_item = InvoiceItem.find_by(invoice_items_params)
   end
 
   def index
-    render json: InvoiceItem.where(invoice_items_params)
+    price_check
+    @invoice_items = InvoiceItem.where(invoice_items_params)
   end
 
   private
+
   def invoice_items_params
-    params.permit(:id, :quantity, :unit_price, :created_at, :updated_at)
+    params.permit(:id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at)
   end
 end
