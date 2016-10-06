@@ -25,22 +25,6 @@ describe "merchants finders" do
     expect(result_find["id"]).to eq(1)
   end
 
-  # it "returns merchant by created_at" do
-  #   merchant = create(:merchant, created_at: "2012-03-27 14:53:59 UTC")
-  #   get "/api/v1/merchants/find?created_at=2012-03-27 14:53:59 UTC"
-  #   result_find = JSON.parse(response.body)
-  #   expect(response.status).to eq(200)
-  #   expect(result_find["created_at"]).to eq(merchant.created_at)
-  # end
-
-  # it "returns merchant by updated_at" do
-  #   merchant = create(:merchant, updated_at: 1)
-  #   get "/api/v1/merchants/find?updated_at=1"
-  #   result_find = JSON.parse(response.body)
-  #   expect(response.status).to eq(200)
-  #   expect(result_find["updated_at"]).to eq(1)
-  # end
-
   it "returns all merchants by name" do
     merchants = 2.times {create(:merchant, name: "Microsoft")}
     get "/api/v1/merchants/find_all?name=Microsoft"

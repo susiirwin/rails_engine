@@ -25,22 +25,6 @@ describe "items finders" do
     expect(result_find["id"]).to eq(1)
   end
 
-  # it "returns item by created_at" do
-  #   item = create(:item, created_at: "2012-03-27 14:53:59 UTC")
-  #   get "/api/v1/items/find?created_at=2012-03-27 14:53:59 UTC"
-  #   result_find = JSON.parse(response.body)
-  #   expect(response.status).to eq(200)
-  #   expect(result_find["created_at"]).to eq(item.created_at)
-  # end
-
-  # it "returns item by updated_at" do
-  #   item = create(:item, updated_at: 1)
-  #   get "/api/v1/items/find?updated_at=1"
-  #   result_find = JSON.parse(response.body)
-  #   expect(response.status).to eq(200)
-  #   expect(result_find["updated_at"]).to eq(1)
-  # end
-
   it "returns all items by name" do
     items = 2.times {create(:item, name: "eBay")}
     get "/api/v1/items/find_all?name=eBay"

@@ -25,22 +25,6 @@ describe "customers finders" do
     expect(result_find["id"]).to eq(1)
   end
 
-  # it "returns customer by created_at" do
-  #   customer = create(:customer, created_at: "2012-03-27 14:53:59 UTC")
-  #   get "/api/v1/customers/find?created_at=2012-03-27 14:53:59 UTC"
-  #   result_find = JSON.parse(response.body)
-  #   expect(response.status).to eq(200)
-  #   expect(result_find["created_at"]).to eq(customer.created_at)
-  # end
-
-  # it "returns customer by updated_at" do
-  #   customer = create(:customer, updated_at: 1)
-  #   get "/api/v1/customers/find?updated_at=1"
-  #   result_find = JSON.parse(response.body)
-  #   expect(response.status).to eq(200)
-  #   expect(result_find["updated_at"]).to eq(1)
-  # end
-
   it "returns all customers by first_name" do
     customers = 2.times {create(:customer, first_name: "Dave")}
     get "/api/v1/customers/find_all?first_name=Dave"
